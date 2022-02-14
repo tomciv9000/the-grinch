@@ -13,7 +13,9 @@ export class Game extends React.Component {
       currentDeck: this.buildDeck(),
       hand: [],
       discard: [],
-      turn: 0
+      turn: 0,
+      isScored: false,
+      finalScore: {}
     };
   }
 
@@ -121,6 +123,13 @@ export class Game extends React.Component {
   
   }
 
+  setFinalScore = (displayScore = {}) => {
+    this.setState({
+      finalScore: displayScore,
+      isScored: true
+    });
+  } 
+
   setHand = (newCards) => {
     let newHand = [...this.state.hand, ...newCards];
   
@@ -157,7 +166,11 @@ export class Game extends React.Component {
        <button onClick= {() => this.drawTwo()}>Draw Two</button>
        <Discard currentPile = {this.state.discard}/>
        <Hand drawTwo={this.drawTwo} discard={this.state.discard}currentHand={this.state.hand} setDiscard={this.setDiscard}/>
-       <Scoring currentHand={this.state.hand}/>
+       <Scoring 
+        currentHand={this.state.hand} 
+        isScored={this.state.isScored}
+        setFinalScore={this.setFinalScore} 
+        finalScore={this.state.finalScore}/>
       </div>
     );
   }

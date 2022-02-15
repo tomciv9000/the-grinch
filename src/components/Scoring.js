@@ -5,43 +5,25 @@ export class Scoring extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayScore: {}
     };
-    //this.handleSelectClick = this.handleSelectClick.bind(this);
   }
 
   getLongestRun = (hand) => {
-    /* Get an array of card values from a given hand */
     let arr = hand.map(card => card.val);
-
-    /* We insert all the array elements into
-    unordered set. */
     let valueSet = new Set();
+    
     for (let i = 0; i < arr.length; i++) {
       valueSet.add(arr[i]);
     }
 
-    // check each possible sequence from the start
-    // then update optimal length
     let result = 0;
-    for (let j = 0; j < arr.length; j++) {
-      // if current element is the starting
-        // element of a sequence
-      if (!valueSet.has(arr[j] - 1)) {
-            // Then check for next elements in the
-            // sequence
-            let k = arr[j];
 
-            // increment the value of array element
-            // and repeat search in the set
+    for (let j = 0; j < arr.length; j++) {
+      if (!valueSet.has(arr[j] - 1)) {
+            let k = arr[j];
             while (valueSet.has(k))
                 k++;
- 
-            // Update optimal length if this length
-            // is more. To get the length as it is
-            // incremented one by one
             result = Math.max(result, k - arr[j]);
-
       }
     }
     return result;
@@ -82,10 +64,10 @@ export class Scoring extends React.Component {
     let topValueMatch = this.getWinningValue(valueCount);
 
     const finalScores = {
-      rainbow: rainbowSum,
+      'Rainbow': rainbowSum,
       suitTotal: highestSuit,
       valueCount: topValueMatch,
-      bestRun: bestRun
+      'Best Run': bestRun
     };
 
     const scoreDisplay = this.getDisplayObject(finalScores);

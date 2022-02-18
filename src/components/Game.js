@@ -1,8 +1,13 @@
 import React from 'react';
+import TopContainer from './TopContainer';
 import Deck from './Deck';
 import Hand from './Hand';
 import Discard from './Discard';
 import Scoring from './Scoring';
+import MiddleContainer from './MiddleContainer';
+import BottomContainer from './BottomContainer';
+import Button from './Button';
+import FeltTable from './FeltTable';
 
 export class Game extends React.Component {
 
@@ -92,27 +97,29 @@ export class Game extends React.Component {
   }
 
   shuffleCards = () => {
-    let counter = this.state.currentDeck.length;
-    let t;
-    let i;
+    console.log('shuffling the cards')
+    // let counter = this.state.currentDeck.length;
+    // let t;
+    // let i;
 
-    let newShuffle = this.state.currentDeck.slice();
+    // let newShuffle = this.state.currentDeck.slice();
 
-    while (counter) {
-      i = Math.floor(Math.random() * counter --);
-      t = newShuffle[counter];
-      newShuffle[counter] = newShuffle[i];
-      newShuffle[i] = t;
-    }
-    this.setState({currentDeck: newShuffle});
+    // while (counter) {
+    //   i = Math.floor(Math.random() * counter --);
+    //   t = newShuffle[counter];
+    //   newShuffle[counter] = newShuffle[i];
+    //   newShuffle[i] = t;
+    // }
+    // this.setState({currentDeck: newShuffle});
   }
 
   drawTwo = () => {
-    let copyDeck = this.state.currentDeck.slice();
-    let twoNewCards = copyDeck.splice(-2, 2);
+    console.log('draw two')
+    // let copyDeck = this.state.currentDeck.slice();
+    // let twoNewCards = copyDeck.splice(-2, 2);
 
-    this.setHand(twoNewCards);
-    this.setDeck(copyDeck);
+    // this.setHand(twoNewCards);
+    // this.setDeck(copyDeck);
 
   }
 
@@ -157,12 +164,22 @@ export class Game extends React.Component {
     
   }
 
+
+
   
 
   render() {
     return (  
-      <div>
-       <Deck currentDeck={this.state.currentDeck} shuffleCards={this.shuffleCards}/>
+      <div className='game-container'>
+        <Button label='SHUFFLE' action={this.shuffleCards} keepActive={false}></Button>
+        <Button label='DRAW TWO' action={this.drawTwo} keepActive={true}></Button>
+<FeltTable>
+
+</FeltTable>
+
+
+
+       {/* <Deck currentDeck={this.state.currentDeck} shuffleCards={this.shuffleCards}/>
        <button onClick= {() => this.drawTwo()}>Draw Two</button>
        <Discard currentPile = {this.state.discard}/>
        <Hand drawTwo={this.drawTwo} discard={this.state.discard}currentHand={this.state.hand} setDiscard={this.setDiscard}/>
@@ -170,7 +187,7 @@ export class Game extends React.Component {
         currentHand={this.state.hand} 
         isScored={this.state.isScored}
         setFinalScore={this.setFinalScore} 
-        finalScore={this.state.finalScore}/>
+        finalScore={this.state.finalScore}/> */}
       </div>
     );
   }

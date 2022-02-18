@@ -24,9 +24,9 @@ export class Hand extends React.Component {
           {this.props.currentHand.map((card, index) => {
             
             return (
-              <div key={'d'+index + card.val}>
+              <div className="single-card" key={'d'+index + card.val}>
             <Card key={index + card.val + card.suit} suit={card.suit} value={card.val} bonus={card.bonus}/>
-            <button onClick= {() => this.handleDiscardClick(index)}>Get Rid of It</button>
+            <button className="discard-select" onClick= {() => this.handleDiscardClick(index)}>Get Rid of It</button>
             </div>
             )
           })}

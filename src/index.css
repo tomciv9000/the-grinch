@@ -1,129 +1,59 @@
-body {
-  font: 14px "Century Gothic", Futura, sans-serif;
-  margin: 20px;
-}
-
-
 #root {
+  display: flex
+}
+
+/* body {
+  
+} */
+
+.game-container {
   display: flex;
-  flex-flow: column wrap;
+flex-direction: column;
+align-items: flex-start;
+padding: 10px;
+
+position: relative;
+
+
+background: #F2C94C;
 }
 
-.deck {
+.button {
   display: flex;
-  flex-flow: row wrap;
-}
-
-.hand {
-  display: flex;
-  flex-flow: row wrap;
-  border-radius: 8px;
-  border: 3px solid green;
-  margin: 16px;
-  padding: 4px;
-  height: 300px;
-  width: 980px;
-}
-
-.discard {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-end;
-}
-
-.selected-card {
-  display: flex;
-  width: 120px;
-  height: 200px;
-  background-color: rgba(212, 54, 110, 0.331);
-  border-radius: 8px;
-  border: 1px solid black;
-  margin: 16px;
-  padding: 4px;
-}
-
-.card {
-  display: flex;
-  width: 120px;
-  height: 200px;
-  background-color: #FFF;
-  border-radius: 8px;
-  border: 1px solid black;
-  margin: 16px;
-  padding: 4px;
-}
-
-.card-back {
-  display: flex;
-  width: 120px;
-  height: 200px;
-  background-color: rgb(187, 31, 31);
-  border-radius: 8px;
-  border: 3px solid green;
-  margin: 16px;
-  padding: 4px;
-}
-
-.card-orange{
-  color: orange;
-}
-
-.card-green {
-  color: green;
-}
-
-
-.card-red {
-  color: red;
-}
-
-.card-blue {
-  color: blue;
-}
-
-.card-value {
-  font-size: 30px;
-}
-
-.card-suit {
-  font-size: 30px;
-}
-
-.bonus-value {
-  font-size: 14px;
-  color: black;
-}
-
-.bonus-suit {
-  border-radius: 4px;
-  border: 1px solid black;
-  font-size: 16px;
-  padding: 2px;
-  background-color: rgba(254, 0, 178, 0.461);
-}
-
-.card-tl {
-  display: flex;
-  flex-grow: 1;
-  flex-flow: column nowrap;
+  flex-direction: row;
   align-items: flex-start;
+  padding: 10px 20px;
+  position: relative;
+  border-radius: 4px;
 }
 
-.card-br {
-  display: flex;
-  flex-grow: 1;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: flex-end;
-  transform:translate(-5px, 135px);
+.active-button {
+  background: #219653;
 }
 
-input[type=button] {
-  padding: 8px 16px;
-  margin: 16px;
-  border-radius: 8px;
-  background-color: red;
-  border: 1px solid white;
-  color: white;
-  text-transform: uppercase;
+.hovered-button {
+  background: #d32929;
+}
+
+.inactive-button {
+  background: #a7a7a7;
+}
+
+.felt-table-box {
+  position: relative;
+  width: 801px;
+  height: 213px;
+  margin: 10px 0px;
+  background: #99648A;
+  border: 5px solid #000000;
+  box-sizing: border-box;
+  }
+
+.button-text {
+  font-family: Tahoma;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+  color: #F2F2F2;
 }

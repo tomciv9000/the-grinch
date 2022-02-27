@@ -7,16 +7,30 @@ export class Button extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isActive: true,
+      isActive: false,
       isHovered: false,
     };
     
   }
 
+  componentDidMount() {
+    this.getActiveStatus();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.turnCount !== prevProps.turnCount) {
+      this.getActiveStatus();
+    }
+  }
+
+  
+
   handleClick = () => {
-    this.props.action();
-    if (!this.props.keepActive && this.state.isActive) {
-      this.switchActiveStatus()
+    if (this.state.isActive) {
+      this.props.action();
+      if (!this.props.keepActive) {
+        this.switchActiveStatus()
+      }
     }
   }
 
@@ -36,7 +50,31 @@ export class Button extends React.Component {
     });
   }
 
+  
+
+  getActiveStatus = () => {
+    let turn = this.props.turnCount;
+    let activeStatus;
+
+    if (this.props.label === 'SHUFFLE') {
+      activeStatus = turn === 0 ? true : false;
+    } else if (this.props.label === 'DRAW TWO') {
+      
+      activeStatus = (turn > 0 && turn < 4) ? true : false;
+   } else if (this.props.label === 'SCORE IT') {
+      activeStatus = turn === 4 ? true : false;
+   }
+
+   this.setState({
+     isActive: activeStatus
+   });
+   
+  }
+  
+
   render() {
+    
+
     var buttonClasses = classNames(
       'button', 'button-text', {
         'active-button': this.state.isActive,

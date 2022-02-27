@@ -8,6 +8,7 @@ import MiddleContainer from './MiddleContainer';
 import BottomContainer from './BottomContainer';
 import Button from './Button';
 import FeltTable from './FeltTable';
+import PlayingCard from './PlayingCard';
 
 export class Game extends React.Component {
 
@@ -97,29 +98,37 @@ export class Game extends React.Component {
   }
 
   shuffleCards = () => {
-    console.log('shuffling the cards')
-    // let counter = this.state.currentDeck.length;
-    // let t;
-    // let i;
+    
+    let counter = this.state.currentDeck.length;
+    let t;
+    let i;
 
-    // let newShuffle = this.state.currentDeck.slice();
+    let newShuffle = this.state.currentDeck.slice();
+    let turnCount = this.state.turn + 1;
+    while (counter) {
+      i = Math.floor(Math.random() * counter --);
+      t = newShuffle[counter];
+      newShuffle[counter] = newShuffle[i];
+      newShuffle[i] = t;
+    }
+    this.setState(
+      {
+        currentDeck: newShuffle,
+        turn: turnCount
+      });
 
-    // while (counter) {
-    //   i = Math.floor(Math.random() * counter --);
-    //   t = newShuffle[counter];
-    //   newShuffle[counter] = newShuffle[i];
-    //   newShuffle[i] = t;
-    // }
-    // this.setState({currentDeck: newShuffle});
+    console.log(newShuffle)
   }
+
+  
 
   drawTwo = () => {
     console.log('draw two')
-    // let copyDeck = this.state.currentDeck.slice();
-    // let twoNewCards = copyDeck.splice(-2, 2);
+    let copyDeck = this.state.currentDeck.slice();
+    let twoNewCards = copyDeck.splice(-2, 2);
 
-    // this.setHand(twoNewCards);
-    // this.setDeck(copyDeck);
+    this.setHand(twoNewCards);
+    this.setDeck(copyDeck);
 
   }
 
@@ -165,24 +174,38 @@ export class Game extends React.Component {
   }
 
 
-
-  
-
   render() {
+    
+
     return (  
       <div className='game-container'>
-        <Button label='SHUFFLE' action={this.shuffleCards} keepActive={false}></Button>
-        <Button label='DRAW TWO' action={this.drawTwo} keepActive={true}></Button>
-<FeltTable>
+        <div className='top-container'>
+          <div className='left-buttons'>
+            <Button label='SHUFFLE' action={this.shuffleCards} keepActive={false} turnCount={this.state.turn}/>
+            <Button label='DRAW TWO' action={this.drawTwo} keepActive={true} turnCount={this.state.turn}/>
+          </div>
+          <div className='spacer'></div>
+          <div className='right-buttons'>
+            <Button label='SCORE IT' action={this.drawTwo} keepActive={false} turnCount={this.state.turn}/>
+          </div>
+        </div>
+       <div className='deck-discard'>
+       <Deck />
+      <Discard currentPile = {this.state.discard}/>
+       </div>
+       
 
-</FeltTable>
+<Hand discard={this.state.discard}currentHand={this.state.hand} setDiscard={this.setDiscard}/>
 
-
-
+<Scoring 
+        currentHand={this.state.hand} 
+        isScored={this.state.isScored}
+        setFinalScore={this.setFinalScore} 
+        finalScore={this.state.finalScore}/>
        {/* <Deck currentDeck={this.state.currentDeck} shuffleCards={this.shuffleCards}/>
        <button onClick= {() => this.drawTwo()}>Draw Two</button>
        <Discard currentPile = {this.state.discard}/>
-       <Hand drawTwo={this.drawTwo} discard={this.state.discard}currentHand={this.state.hand} setDiscard={this.setDiscard}/>
+       
        <Scoring 
         currentHand={this.state.hand} 
         isScored={this.state.isScored}

@@ -18,6 +18,33 @@ position: relative;
 background: #F2C94C;
 }
 
+.top-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+  padding: 3px;
+}
+
+.left-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 10px;
+}
+
+.spacer {
+  flex-grow: 2;
+  
+}
+
+.right-buttons {
+  align-items: flex-start;
+
+  
+}
+
 .button {
   display: flex;
   flex-direction: row;
@@ -35,19 +62,31 @@ background: #F2C94C;
   background: #d32929;
 }
 
+.unhovered-discard {
+  background: #219653;
+}
+
+.hovered-discard {
+  background: #d32929;
+}
+
 .inactive-button {
   background: #a7a7a7;
 }
 
 .felt-table-box {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  
   position: relative;
-  width: 801px;
-  height: 213px;
+  width: 860px;
+  height: 260px;
   margin: 10px 0px;
   background: #99648A;
   border: 5px solid #000000;
   box-sizing: border-box;
-  }
+}
 
 .button-text {
   font-family: Tahoma;
@@ -56,4 +95,146 @@ background: #F2C94C;
   font-size: 18px;
   line-height: 22px;
   color: #F2F2F2;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1px 3px;
+  width: 130px;
+  height: 190px;
+  margin: 6px;
+  background: white;
+
+  
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.card-deck {
+  
+  
+  width: 130px;
+  height: 190px;
+  margin: 15px 0px 5px;
+  
+
+  
+  border: 2px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background: #DF4634;
+}
+
+.discard {
+  
+  margin: 9px 0px 5px;
+}
+
+.discard-select {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 10px 20px;
+  position: relative;
+  border-radius: 4px;
+  
+}
+
+.disc-text {
+  font-family: Tahoma;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 14px;
+  color: #F2F2F2;
+}
+
+.single-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+}
+
+.deck-discard {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 10px;
+}
+
+.card-contents {
+  display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 1px 3px;
+background: #F2F2F2;
+}
+
+.card-value {
+  
+
+font-family: Tahoma;
+font-style: normal;
+font-weight: normal;
+font-size: 38px;
+line-height: 38px;
+
+
+}
+
+.card-suit {
+  padding: 18px;
+  font-family: Tahoma;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 72px;
+  line-height: 72px;
+}
+
+.card-bonus {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 2px;
+  align-self: stretch;
+  
+  font-family: Tahoma;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.bonus-suit {
+ 
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.bonus-value {
+  color:#000000;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.card-robot {
+  color: #509AA1;
+}
+
+.card-alien {
+  color: #9B51E0;
+}
+
+.card-cowboy {
+  color: #F2C94C;
+
+}
+
+.card-clown {
+  color: #DF4634;
 }

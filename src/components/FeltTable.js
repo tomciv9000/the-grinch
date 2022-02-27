@@ -1,4 +1,5 @@
 import React from 'react';
+import PlayingCard from './PlayingCard';
 
 
 export class FeltTable extends React.Component {

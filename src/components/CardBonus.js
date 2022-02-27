@@ -6,7 +6,7 @@ export const CardBonus = (props) => {
     let bonusValue = props.bonus.value;
   
     return (
-      <div className="card-br">
+      <div className="card-bonus">
         <div className="bonus-suit">{bonusSuit}</div>
         <div className="bonus-value">+{bonusValue}</div>
       </div>

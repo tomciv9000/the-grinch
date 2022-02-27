@@ -1,5 +1,6 @@
 import React from 'react';
-import { Card } from './Card';
+
+import PlayingCard from './PlayingCard';
 
 export class Discard extends React.Component {
 
@@ -20,7 +21,7 @@ export class Discard extends React.Component {
     if (!!topCard) {
       return (
       <div className='discard'>
-        <Card suit={topCard.suit} value={topCard.val} bonus={topCard.bonus}/>
+        <PlayingCard suit={topCard.suit} value={topCard.val} bonus={topCard.bonus}/>
       </div>)
       
     } else {

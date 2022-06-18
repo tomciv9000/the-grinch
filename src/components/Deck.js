@@ -1,11 +1,8 @@
 import React from 'react';
-export class Deck extends React.Component {
-
-  render() {
-    return (  
+const Deck = () => {
+  return (  
         <div className="card-deck"/>
-    )
-  }
-}
+  )
+};
 
 export default Deck;

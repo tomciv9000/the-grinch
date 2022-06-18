@@ -1,49 +1,20 @@
 import React from 'react';
 import { CardBonus } from './CardBonus';
+import { getStyle } from './deckUtils';
 
 
-export class PlayingCard extends React.Component {
+const PlayingCard = (props) => {
+  const styleDiv = getStyle(props.suit);
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      hasBonus: false
-    };
-    
-  }
-
-  getStyle = (suit) => {
-    var suitStyles = {
-      "🤖": "card card-robot",
-      "👾": "card card-alien",
-      "🤠": "card card-cowboy",
-      "🤡": "card card-clown"
-    };
-  
-    return suitStyles[suit];
-  }
-
-  buildCard = (cardData) => {
-    const styleDiv = this.getStyle(cardData.suit);
-    return (
-      
-      <div className={styleDiv} onClick={()=>{console.log(cardData.suit, cardData.value, 'clicked')}}>
+  return (
+    <div className={styleDiv}>
         <div className="card-contents">
-          <div className="card-value">{cardData.value}</div>
-          <div className="card-suit">{cardData.suit}</div>
+          <div className="card-value">{props.value}</div>
+          <div className="card-suit">{props.suit}</div>
         </div>
-          <CardBonus bonus={cardData.bonus}/>
+          <CardBonus bonus={props.bonus}/>
       </div>
-      
-      );
-  }
- 
-
-  render() {
-   return (this.buildCard(this.props));
-
- 
-  }
-}
+  );
+};
 
 export default PlayingCard;

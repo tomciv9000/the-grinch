@@ -1,42 +1,35 @@
 import React from 'react';
 import DiscardButton from './DiscardButton';
-import { PlayingCard } from './PlayingCard';
+import PlayingCard from './PlayingCard';
 
-export class Hand extends React.Component {
+const Hand = (props) => {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-    
-  }
+  const handleDiscardClick = (index) => {
+    props.setDiscard(index);
+  };
 
-  handleDiscardClick = (index) => {
-    this.props.setDiscard(index);
-  }
-
-  render() {
-    
-    return (  
-      <div>
-        
-        
-        <div className="felt-table-box">
-          {this.props.currentHand.map((card, index) => {
-            
-            return (
-              <div className="single-card" key={'d'+index + card.val}>
-            <PlayingCard key={index + card.val + card.suit} suit={card.suit} value={card.val} bonus={card.bonus}/>
-            <DiscardButton key={'c' + index} action={this.handleDiscardClick} targetIndex={index}></DiscardButton>
-    
-            </div>
-            )
-          })}
-        </div>
-          
+  return (  
+    <div>
+      <div className="felt-table-box">
+        {props.currentHand.map((card, index) => {
+          return (
+            <div className="single-card" key={'d'+index + card.val}>
+              <PlayingCard 
+                key={index + card.val + card.suit} 
+                suit={card.suit} 
+                value={card.val} 
+                bonus={card.bonus}/>
+              <DiscardButton 
+                key={'c' + index} 
+                action={handleDiscardClick} 
+                targetIndex={index}>
+              </DiscardButton>
+          </div>
+          )
+        })};
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Hand;

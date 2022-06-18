@@ -1,15 +1,7 @@
 import React from 'react';
-// I want to import functions from scoring like it's a utility or library - tie the functionality tot he button
-export class Score extends React.Component {
+const Score = ({isScored, finalScore}) => {
 
-  constructor(props) {
-    super(props);
-  }
- 
-   
-
-  render() {
-    const isGameOver = this.props.isScored;
+  const isGameOver = isScored;
     if (!isGameOver) {
       return (
         <div className='score-text'>Game In Progress...</div>
@@ -26,7 +18,7 @@ export class Score extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {Object.entries(this.props.finalScore).map((category, index) => {
+              {Object.entries(finalScore).map((category, index) => {
                 return (
                   <tr key={index}>
                     <td>{category[0]}: </td>
@@ -40,7 +32,7 @@ export class Score extends React.Component {
       </div>
     )
     }
-  }
-}
+
+};
 
 export default Score;

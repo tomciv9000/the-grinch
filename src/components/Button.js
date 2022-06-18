@@ -1,99 +1,80 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 var classNames = require('classnames');
 
-export class Button extends React.Component {
+const Button = (props) => {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      isActive: false,
-      isHovered: false,
-    };
-    
-  }
+  const [isActive, setIsActive] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
-  componentDidMount() {
-    this.getActiveStatus();
-  }
+  useEffect(() => {
+    getActiveStatus();
+  });
 
-  componentDidUpdate(prevProps) {
-    if (this.props.turnCount !== prevProps.turnCount) {
-      this.getActiveStatus();
-    }
-  }
+
+  // componentDidUpdate(prevProps) {
+  //   if (this.props.turnCount !== prevProps.turnCount) {
+  //     this.getActiveStatus();
+  //   }
+  // }
 
   
 
-  handleClick = () => {
-    if (this.state.isActive) {
-      this.props.action();
-      if (!this.props.keepActive) {
-        this.switchActiveStatus()
+  const handleClick = () => {
+    if (isActive) {
+      props.action();
+      if (!props.keepActive) {
+        setIsActive(!isActive);
       }
     }
-  }
+  };
 
-  setIsHovered = (isHovered) => {
-    if (this.state.isActive) {
-      this.setState({
-        isHovered: isHovered
-      });
+  const setHovered = (isHovered) => {
+    if (isActive) {
+      setIsHovered(isHovered);
     }
-  }
-
-  switchActiveStatus = () => {
-    let newStatus = !this.state.isActive;
-    
-    this.setState({
-      isActive: newStatus
-    });
-  }
+  };
 
   
 
-  getActiveStatus = () => {
-    let turn = this.props.turnCount;
+  const getActiveStatus = () => {
+    let turn = props.turnCount;
     let activeStatus;
 
-    if (this.props.label === 'SHUFFLE') {
+    if (props.label === 'SHUFFLE') {
       activeStatus = turn === 0 ? true : false;
-    } else if (this.props.label === 'DRAW TWO') {
-      
+    } else if (props.label === 'DRAW TWO') {
       activeStatus = (turn > 0 && turn < 4) ? true : false;
-   } else if (this.props.label === 'SCORE IT') {
+    } else if (props.label === 'SCORE IT') {
       activeStatus = turn === 4 ? true : false;
-   }
+    }
 
-   this.setState({
-     isActive: activeStatus
-   });
-   
-  }
+   setIsActive(activeStatus);
+  };
   
 
-  render() {
+  
     
 
-    var buttonClasses = classNames(
-      'button', 'button-text', {
-        'active-button': this.state.isActive,
-        'inactive-button': !this.state.isActive,
-        'hovered-button': this.state.isHovered
-      }
-    )
+  const buttonClasses = classNames(
+    'button', 'button-text', {
+    'active-button': isActive,
+    'inactive-button': !isActive,
+    'hovered-button': isHovered
+    }
+  );
 
     return (  
       <button 
         className={buttonClasses} 
-        onClick={() => this.handleClick()}
-        onMouseEnter={() => {this.setIsHovered(true)}}
-        onMouseLeave={() => {this.setIsHovered(false)}}
+        onClick={() => handleClick()}
+        onMouseEnter={() => {setHovered(true)}}
+        onMouseLeave={() => {setHovered(false)}}
         >
-       {this.props.label}
+       {props.label}
       </button>
     );
-  }
-}
+  
+};
 
 export default Button;

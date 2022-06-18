@@ -1,5 +1,5 @@
 import React from 'react';
-import {DiscardButton} from './DiscardButton';
+import DiscardButton from './DiscardButton';
 import { PlayingCard } from './PlayingCard';
 
 export class Hand extends React.Component {
@@ -8,7 +8,7 @@ export class Hand extends React.Component {
     super(props);
     this.state = {
     };
-    //this.handleSelectClick = this.handleSelectClick.bind(this);
+    
   }
 
   handleDiscardClick = (index) => {
@@ -28,7 +28,7 @@ export class Hand extends React.Component {
               <div className="single-card" key={'d'+index + card.val}>
             <PlayingCard key={index + card.val + card.suit} suit={card.suit} value={card.val} bonus={card.bonus}/>
             <DiscardButton key={'c' + index} action={this.handleDiscardClick} targetIndex={index}></DiscardButton>
-            {/* <button className="discard-select disc-text" onClick= {() => this.handleDiscardClick(index)}>Select Discard</button> */}
+    
             </div>
             )
           })}

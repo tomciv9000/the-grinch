@@ -1,14 +1,10 @@
 import React from 'react';
-import TopContainer from './TopContainer';
 import Deck from './Deck';
 import Hand from './Hand';
 import Discard from './Discard';
-import Scoring from './Scoring';
-import MiddleContainer from './MiddleContainer';
-import BottomContainer from './BottomContainer';
+import Score from './Score';
 import Button from './Button';
-import FeltTable from './FeltTable';
-import PlayingCard from './PlayingCard';
+import * as scoringUtils from './scoreUtils';
 
 export class Game extends React.Component {
 
@@ -173,6 +169,13 @@ export class Game extends React.Component {
     
   }
 
+  handleScoreIt = () => {
+    const finalScore = scoringUtils.getFinalScore(this.state.hand);
+    const scoreDisplay = scoringUtils.getDisplayObject(finalScore);
+
+    this.setFinalScore(scoreDisplay);
+  }
+
 
   render() {
     
@@ -184,34 +187,18 @@ export class Game extends React.Component {
             <Button label='SHUFFLE' action={this.shuffleCards} keepActive={false} turnCount={this.state.turn}/>
             <Button label='DRAW TWO' action={this.drawTwo} keepActive={true} turnCount={this.state.turn}/>
           </div>
-          <div className='spacer'></div>
+          <div className='spacer'/>
           <div className='right-buttons'>
-            <Button label='SCORE IT' action={this.drawTwo} keepActive={false} turnCount={this.state.turn}/>
+            <Button label='SCORE IT' action={this.handleScoreIt} keepActive={false} turnCount={this.state.turn}/>
           </div>
         </div>
-       <div className='deck-discard'>
-       <Deck />
-      <Discard currentPile = {this.state.discard}/>
-       </div>
-       
-
-<Hand discard={this.state.discard}currentHand={this.state.hand} setDiscard={this.setDiscard}/>
-
-<Scoring 
-        currentHand={this.state.hand} 
-        isScored={this.state.isScored}
-        setFinalScore={this.setFinalScore} 
-        finalScore={this.state.finalScore}/>
-       {/* <Deck currentDeck={this.state.currentDeck} shuffleCards={this.shuffleCards}/>
-       <button onClick= {() => this.drawTwo()}>Draw Two</button>
-       <Discard currentPile = {this.state.discard}/>
-       
-       <Scoring 
-        currentHand={this.state.hand} 
-        isScored={this.state.isScored}
-        setFinalScore={this.setFinalScore} 
-        finalScore={this.state.finalScore}/> */}
+      <div className='deck-discard'>
+        <Deck/>
+        <Discard currentPile = {this.state.discard}/>
       </div>
+      <Hand discard={this.state.discard}currentHand={this.state.hand} setDiscard={this.setDiscard}/>
+      <Score isScored={this.state.isScored} finalScore={this.state.finalScore}></Score>
+    </div>
     );
   }
 }

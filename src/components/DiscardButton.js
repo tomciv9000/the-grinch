@@ -1,55 +1,37 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 var classNames = require('classnames');
 
-export class DiscardButton extends React.Component {
+const DiscardButton = (props) => {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      isHovered: false,
-    };
-    
-  }
-
+  const [isHovered, setIsHovered] = useState(false);
   
 
-  handleClick = () => {
-    console.log(this.props.targetIndex, 'clicked for byebye')
-    let targeted = this.props.targetIndex;
-    this.props.action(targeted);
-  }
+  const handleClick = () => {
+    let targeted = props.targetIndex;
+    props.action(targeted);
+  };
 
-  setIsHovered = (isHovered) => {
-      this.setState({
-        isHovered: isHovered
-      });
-    
-  }
   
-
-  render() {
     
-
-    var buttonClasses = classNames(
+  var buttonClasses = classNames(
       'discard-select', 'disc-text', {
-        'unhovered-discard': !this.state.isHovered,
-        'hovered-discard': this.state.isHovered
+        'unhovered-discard': !isHovered,
+        'hovered-discard': isHovered
       }
-    )
+  );
 
     return (  
-      
       <button 
         className={buttonClasses} 
-        onClick={() => this.handleClick()}
-        onMouseEnter={() => {this.setIsHovered(true)}}
-        onMouseLeave={() => {this.setIsHovered(false)}}
+        onClick={() => handleClick()}
+        onMouseEnter={() => {setIsHovered(true)}}
+        onMouseLeave={() => {setIsHovered(false)}}
         >
        Select Discard
       </button>
     );
-  }
+  
 }
 
 export default DiscardButton;

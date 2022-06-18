@@ -1,7 +1,6 @@
 import React from 'react';
 
 import PlayingCard from './PlayingCard';
-
 export class Discard extends React.Component {
 
   getTopCard = () => {

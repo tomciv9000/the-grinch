@@ -2,9 +2,10 @@
   display: flex
 }
 
-/* body {
-  
-} */
+body {
+  background: #F2C94C;
+}
+
 
 .game-container {
   display: flex;
@@ -24,6 +25,27 @@ background: #F2C94C;
   align-items: flex-start;
   width: 100%;
   padding: 3px;
+}
+
+.score-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  width: 860px;
+  padding: 3px;
+}
+
+.score-space-left {
+  flex-grow: 1;
+}
+
+.score-space-right {
+  flex-grow: 1;
+}
+
+.score-table {
+  
 }
 
 .left-buttons {
@@ -95,6 +117,24 @@ background: #F2C94C;
   font-size: 18px;
   line-height: 22px;
   color: #F2F2F2;
+}
+
+.score-text {
+  font-family: Tahoma;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+  color: #F2F2F2;
+}
+
+.final-score-text {
+  font-family: Tahoma;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+  color: #219653
 }
 
 .card {

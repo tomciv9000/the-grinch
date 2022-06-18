@@ -9,7 +9,7 @@ export class FeltTable extends React.Component {
     this.state = {
       
     };
-    //this.handleSelectClick = this.handleSelectClick.bind(this);
+    
   }
 
   
@@ -18,7 +18,6 @@ export class FeltTable extends React.Component {
     
     return (  
       <div className='felt-table-box'>
-        
       </div>
     );
   }

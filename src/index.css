@@ -44,10 +44,6 @@ background: #F2C94C;
   flex-grow: 1;
 }
 
-.score-table {
-  
-}
-
 .left-buttons {
   display: flex;
   flex-direction: row;

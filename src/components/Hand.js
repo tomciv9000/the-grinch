@@ -2,10 +2,14 @@ import React from 'react';
 import DiscardButton from './DiscardButton';
 import PlayingCard from './PlayingCard';
 
-const Hand = ({setDiscard, currentHand}) => {
+const Hand = ({setDiscard, currentHand, turnCount}) => {
 
   const handleDiscardClick = (index) => {
     setDiscard(index);
+  };
+
+  const canDiscard = () => {
+    return currentHand.length - turnCount === 3 ? true : false;
   };
 
   return (  
@@ -22,8 +26,9 @@ const Hand = ({setDiscard, currentHand}) => {
               <DiscardButton 
                 key={'c' + index} 
                 action={handleDiscardClick} 
-                targetIndex={index}>
-              </DiscardButton>
+                targetIndex={index}
+                canDiscard={canDiscard()}
+              />
           </div>
           )
         })};

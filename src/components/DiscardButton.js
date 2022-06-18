@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 var classNames = require('classnames');
 
-const DiscardButton = ({targetIndex, action}) => {
+const DiscardButton = ({targetIndex, action, canDiscard}) => {
 
   const [isHovered, setIsHovered] = useState(false);
+  const [isActive, setIsActive] = useState(false);
   
 
   const handleClick = () => {
@@ -12,18 +13,23 @@ const DiscardButton = ({targetIndex, action}) => {
     action(targeted);
   };
 
-  
-    
+  useEffect(() => {
+    setIsActive(canDiscard);
+  }, [canDiscard]);
+
   var buttonClasses = classNames(
       'discard-select', 'disc-text', {
         'unhovered-discard': !isHovered,
-        'hovered-discard': isHovered
+        'hovered-discard': isHovered,
+        'active-button': isActive,
+        'inactive-button': !isActive
       }
   );
 
     return (  
       <button 
-        className={buttonClasses} 
+        className={buttonClasses}
+        disabled={!isActive} 
         onClick={() => handleClick()}
         onMouseEnter={() => {setIsHovered(true)}}
         onMouseLeave={() => {setIsHovered(false)}}

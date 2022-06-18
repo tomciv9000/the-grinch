@@ -4,8 +4,8 @@ import Hand from './Hand';
 import Discard from './Discard';
 import Score from './Score';
 import Button from './Button';
-import * as scoringUtils from './scoreUtils';
-import * as deckUtils from './deckUtils';
+import * as scoringUtils from '../utilities/scoreUtils';
+import * as deckUtils from '../utilities/deckUtils';
 
 const Game = () => {
 
@@ -29,17 +29,21 @@ const Game = () => {
     setCurrentDeck(drawCards.newDeck);
   };
 
+  const canDraw = () => {
+    let cardCount = hand.length;
+    return turn > 0 && turn < 4 && cardCount - turn < 2;
+  };
+
   const handleDiscard = (index) => {
     let selectIndex = index;
     let newHand = [...hand];
     let newDiscard = [...discard];
     let selectedCard = newHand.splice(selectIndex, 1)[0];
-    let turnCount = turn + 1;
 
     newDiscard.push(selectedCard);
     setDiscard(newDiscard);
     setHand(newHand);
-    setTurn(turnCount);
+    setTurn(turn + 1);
   };
 
   const handleScoreIt = () => {
@@ -56,15 +60,14 @@ const Game = () => {
         <div className='left-buttons'>
           <Button 
             label='SHUFFLE' 
-            action={handleShuffle} 
-            keepActive={false} 
+            action={handleShuffle}  
             turnCount={turn}
           />
           <Button 
             label='DRAW TWO' 
-            action={handleDrawTwo} 
-            keepActive={true} 
+            action={handleDrawTwo}  
             turnCount={turn}
+            canDraw={canDraw}
           />
         </div>
         <div className='spacer'/>
@@ -72,7 +75,6 @@ const Game = () => {
           <Button 
             label='SCORE IT' 
             action={handleScoreIt} 
-            keepActive={false} 
             turnCount={turn}
           />
         </div>
@@ -85,6 +87,7 @@ const Game = () => {
       discard={discard} 
       currentHand={hand} 
       setDiscard={handleDiscard}
+      turnCount={turn}
     />
     <Score 
       isScored={isScored} 

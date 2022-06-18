@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 
 var classNames = require('classnames');
 
-const Button = ({action, keepActive, turnCount, label}) => {
+const Button = ({action, turnCount, label, canDraw}) => {
 
   const [isActive, setIsActive] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -14,15 +14,6 @@ const Button = ({action, keepActive, turnCount, label}) => {
   const handleClick = () => {
     if (isActive) {
       action();
-      if (!keepActive) {
-        setIsActive(!isActive);
-      }
-    }
-  };
-
-  const setHovered = (isHovered) => {
-    if (isActive) {
-      setIsHovered(isHovered);
     }
   };
 
@@ -33,7 +24,7 @@ const Button = ({action, keepActive, turnCount, label}) => {
     if (label === 'SHUFFLE') {
       activeStatus = turn === 0 ? true : false;
     } else if (label === 'DRAW TWO') {
-      activeStatus = (turn > 0 && turn < 4) ? true : false;
+      activeStatus = (turn > 0 && turn < 4 && canDraw()) ? true : false;
     } else if (label === 'SCORE IT') {
       activeStatus = turn === 4 ? true : false;
     }
@@ -50,11 +41,12 @@ const Button = ({action, keepActive, turnCount, label}) => {
   );
 
     return (  
-      <button 
-        className={buttonClasses} 
+      <button
+        
+        className={buttonClasses}
         onClick={() => handleClick()}
-        onMouseEnter={() => {setHovered(true)}}
-        onMouseLeave={() => {setHovered(false)}}
+        onMouseEnter={() => {setIsHovered(true)}}
+        onMouseLeave={() => {setIsHovered(false)}}
       >
        {label}
       </button>

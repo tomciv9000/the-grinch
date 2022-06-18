@@ -1,6 +1,6 @@
 import React from 'react';
 import { CardBonus } from './CardBonus';
-import { getStyle } from './deckUtils';
+import { getStyle } from '../utilities/deckUtils';
 
 
 const PlayingCard = ({suit, value, bonus}) => {

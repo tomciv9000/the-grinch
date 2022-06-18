@@ -2,16 +2,16 @@ import React from 'react';
 import DiscardButton from './DiscardButton';
 import PlayingCard from './PlayingCard';
 
-const Hand = (props) => {
+const Hand = ({setDiscard, currentHand}) => {
 
   const handleDiscardClick = (index) => {
-    props.setDiscard(index);
+    setDiscard(index);
   };
 
   return (  
     <div>
       <div className="felt-table-box">
-        {props.currentHand.map((card, index) => {
+        {currentHand.map((card, index) => {
           return (
             <div className="single-card" key={'d'+index + card.val}>
               <PlayingCard 

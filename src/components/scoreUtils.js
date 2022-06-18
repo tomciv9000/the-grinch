@@ -1,5 +1,3 @@
-
-
 export const getLongestRun = (hand) => {
   let arr = hand.map(card => card.val);
   let valueSet = new Set();
@@ -61,25 +59,14 @@ export const getFinalScore = (hand) => {
     'Best Run': bestRun
   };
 
-  console.log(finalScores);
   return finalScores;
-
-// MOVE this out to the game component
-  // const scoreDisplay = this.getDisplayObject(finalScores);
-
-  // console.log(finalScores);
-  // console.log(scoreDisplay)
-  // this.props.setFinalScore(scoreDisplay);
-  
-
-
-}
+};
 
 
 export const getWinningValue = (valuesObject = {}) => {
    let topKey = Object.keys(valuesObject).reduce((a, b) => valuesObject[a] > valuesObject[b] ? a : b);
    return {[topKey]: valuesObject[topKey]};
-}
+};
 
 export const getDisplayObject = (finalScores) => {
   const displayState = (({ suitTotal, valueCount, ...others }) => others)(finalScores)
@@ -94,4 +81,4 @@ export const getDisplayObject = (finalScores) => {
   displayState[topMatchedKey] = topMatchedValue;
 
   return displayState;
-}
+};

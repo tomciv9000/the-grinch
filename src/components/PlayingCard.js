@@ -3,16 +3,16 @@ import { CardBonus } from './CardBonus';
 import { getStyle } from './deckUtils';
 
 
-const PlayingCard = (props) => {
-  const styleDiv = getStyle(props.suit);
+const PlayingCard = ({suit, value, bonus}) => {
+  const styleDiv = getStyle(suit);
 
   return (
     <div className={styleDiv}>
         <div className="card-contents">
-          <div className="card-value">{props.value}</div>
-          <div className="card-suit">{props.suit}</div>
+          <div className="card-value">{value}</div>
+          <div className="card-suit">{suit}</div>
         </div>
-          <CardBonus bonus={props.bonus}/>
+          <CardBonus bonus={bonus}/>
       </div>
   );
 };

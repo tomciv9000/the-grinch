@@ -2,14 +2,14 @@ import React, {useState} from 'react';
 
 var classNames = require('classnames');
 
-const DiscardButton = (props) => {
+const DiscardButton = ({targetIndex, action}) => {
 
   const [isHovered, setIsHovered] = useState(false);
   
 
   const handleClick = () => {
-    let targeted = props.targetIndex;
-    props.action(targeted);
+    let targeted = targetIndex;
+    action(targeted);
   };
 
   

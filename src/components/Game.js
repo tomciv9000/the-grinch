@@ -7,7 +7,7 @@ import Button from './Button';
 import * as scoringUtils from './scoreUtils';
 import * as deckUtils from './deckUtils';
 
-const Game = (props) => {
+const Game = () => {
 
   const [currentDeck, setCurrentDeck] = useState(deckUtils.buildDeck());
   const [hand, setHand] = useState([]);
@@ -54,23 +54,44 @@ const Game = (props) => {
     <div className='game-container'>
       <div className='top-container'>
         <div className='left-buttons'>
-          <Button label='SHUFFLE' action={handleShuffle} keepActive={false} turnCount={turn}/>
-          <Button label='DRAW TWO' action={handleDrawTwo} keepActive={true} turnCount={turn}/>
+          <Button 
+            label='SHUFFLE' 
+            action={handleShuffle} 
+            keepActive={false} 
+            turnCount={turn}
+          />
+          <Button 
+            label='DRAW TWO' 
+            action={handleDrawTwo} 
+            keepActive={true} 
+            turnCount={turn}
+          />
         </div>
         <div className='spacer'/>
         <div className='right-buttons'>
-          <Button label='SCORE IT' action={handleScoreIt} keepActive={false} turnCount={turn}/>
+          <Button 
+            label='SCORE IT' 
+            action={handleScoreIt} 
+            keepActive={false} 
+            turnCount={turn}
+          />
         </div>
       </div>
     <div className='deck-discard'>
       <Deck/>
       <Discard currentPile = {discard}/>
     </div>
-    <Hand discard={discard} currentHand={hand} setDiscard={handleDiscard}/>
-    <Score isScored={isScored} finalScore={finalScore}></Score>
+    <Hand 
+      discard={discard} 
+      currentHand={hand} 
+      setDiscard={handleDiscard}
+    />
+    <Score 
+      isScored={isScored} 
+      finalScore={finalScore}>
+    </Score>
   </div>
   );
-  
 };
 
 export default Game;

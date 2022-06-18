@@ -92,9 +92,6 @@ export const drawTwo = (deck) => {
     newDeck: deck
   };
   return drawObj;
-
-  // setHand([...hand, ...twoNewCards]);
-  // setCurrentDeck(copyDeck);
 };
 
 export const getStyle = (suit) => {

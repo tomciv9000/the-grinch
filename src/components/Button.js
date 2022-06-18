@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 
 var classNames = require('classnames');
 
-const Button = (props) => {
+const Button = ({action, keepActive, turnCount, label}) => {
 
   const [isActive, setIsActive] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -11,19 +11,10 @@ const Button = (props) => {
     getActiveStatus();
   });
 
-
-  // componentDidUpdate(prevProps) {
-  //   if (this.props.turnCount !== prevProps.turnCount) {
-  //     this.getActiveStatus();
-  //   }
-  // }
-
-  
-
   const handleClick = () => {
     if (isActive) {
-      props.action();
-      if (!props.keepActive) {
+      action();
+      if (!keepActive) {
         setIsActive(!isActive);
       }
     }
@@ -35,27 +26,21 @@ const Button = (props) => {
     }
   };
 
-  
-
   const getActiveStatus = () => {
-    let turn = props.turnCount;
+    let turn = turnCount;
     let activeStatus;
 
-    if (props.label === 'SHUFFLE') {
+    if (label === 'SHUFFLE') {
       activeStatus = turn === 0 ? true : false;
-    } else if (props.label === 'DRAW TWO') {
+    } else if (label === 'DRAW TWO') {
       activeStatus = (turn > 0 && turn < 4) ? true : false;
-    } else if (props.label === 'SCORE IT') {
+    } else if (label === 'SCORE IT') {
       activeStatus = turn === 4 ? true : false;
     }
 
    setIsActive(activeStatus);
   };
   
-
-  
-    
-
   const buttonClasses = classNames(
     'button', 'button-text', {
     'active-button': isActive,
@@ -70,11 +55,11 @@ const Button = (props) => {
         onClick={() => handleClick()}
         onMouseEnter={() => {setHovered(true)}}
         onMouseLeave={() => {setHovered(false)}}
-        >
-       {props.label}
+      >
+       {label}
       </button>
     );
-  
+
 };
 
 export default Button;
